@@ -107,6 +107,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
      }
+
+    public class AlternierendeQuersumme {
+        private int matrikelnummer;
+        private int quersumme;
+
+        public AlternierendeQuersumme(int matrikelnummer){
+            this.matrikelnummer = matrikelnummer;
+            this.quersumme = 0;
+        }
+
+
+
+    }
 }
 
 
