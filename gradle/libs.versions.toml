@@ -7,6 +7,10 @@ appcompat = "1.6.1"
 material = "1.10.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
+rxandroid = "1.2.1"
+rxjava = "1.3.8"
+rxandroidVersion = "3.0.2"
+rxjavaVersion = "3.1.8"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -16,6 +20,10 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+rxandroid = { group = "io.reactivex", name = "rxandroid", version.ref = "rxandroid" }
+rxjava = { group = "io.reactivex", name = "rxjava", version.ref = "rxjava" }
+rxjava3-rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroidVersion" }
+rxjava3-rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjavaVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
