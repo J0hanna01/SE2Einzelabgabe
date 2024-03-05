@@ -38,18 +38,35 @@
 
     <Button
         android:id="@+id/buttonAbschicken"
-        android:layout_width="156dp"
-        android:layout_height="70dp"
+        android:layout_width="152dp"
+        android:layout_height="61dp"
         android:layout_marginTop="71dp"
         android:text="@string/button_abschicken"
         android:textColorLink="#00BCD4"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBerechnen"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Antwort"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.436" />
+
+    <Button
+        android:id="@+id/buttonBerechnen"
+        android:layout_width="152dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="71dp"
+        android:text="@string/button_berechnen"
+        android:textColorLink="#00BCD4"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonAbschicken"
+        app:layout_constraintTop_toBottomOf="@+id/Antwort"
+        app:layout_constraintVertical_bias="0.436" />
 
     <TextView
         android:id="@+id/Antwort"
@@ -58,11 +75,9 @@
         android:layout_marginTop="124dp"
         android:text="@string/antwort_server"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAbschicken"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MatrikelnummerEingabe"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/MatrikelnummerEingabe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

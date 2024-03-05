@@ -4,4 +4,5 @@
     <string name="antwort_server">Antwort vom Server</string>
     <string name="hint_matrikelnummer">Matrikelnummer</string>
     <string name="button_abschicken">Abschicken</string>
+    <string name="button_berechnen">Berechnen</string>
 </resources>
