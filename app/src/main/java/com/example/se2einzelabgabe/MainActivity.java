@@ -41,7 +41,23 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        Button abschicken = findViewById(R.id.buttonAbschicken);
 
+        abschicken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText matrikelnummer = findViewById(R.id.MatrikelnummerEingabe);
+                String matNr = matrikelnummer.getText().toString();
+                if (matNr.length() != 0){
+                    ClientTCPThread client = new ClientTCPThread(serverName, serverPort, matNr);
+                    client.start();
+                } else {
+                    TextView antwort = findViewById(R.id.Antwort);
+                    antwort.setText("Bitte Matrikelnummer eingeben.");
+                }
+
+            }
+        });
 
     }
 
