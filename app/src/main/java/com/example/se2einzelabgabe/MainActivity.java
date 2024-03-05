@@ -117,6 +117,25 @@ public class MainActivity extends AppCompatActivity {
             this.quersumme = 0;
         }
 
+        public void calculateQuersumme(){
+            int counter = 0;
+            int number = 0;
+
+            while(matrikelnummer > 0){
+                int lastDigit = matrikelnummer % 10;
+                if (counter == 0) {
+                    number = lastDigit;
+                } else if (counter % 2 == 0){
+                    number += lastDigit;
+                } else{
+                    number -= lastDigit;
+                }
+                matrikelnummer = matrikelnummer / 10;
+                counter++;
+            }
+            this.quersumme = number;
+        }
+
 
 
     }
