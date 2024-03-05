@@ -136,6 +136,15 @@ public class MainActivity extends AppCompatActivity {
             this.quersumme = number;
         }
 
+        public String quersummeGetParity(){
+            calculateQuersumme();
+            if (quersumme % 2 == 0){
+                return "gerade";
+            } else{
+                return "ungerade";
+            }
+        }
+
 
 
     }
