@@ -59,6 +59,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button berechnen = findViewById(R.id.buttonBerechnen);
+        berechnen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText matrikelnummer = findViewById(R.id.MatrikelnummerEingabe);
+                String matNr = matrikelnummer.getText().toString();
+                if (matNr.length() != 0){
+                    TextView antwort = findViewById(R.id.Antwort);
+                    int num = Integer.parseInt(matNr);
+                    AlternierendeQuersumme qs = new AlternierendeQuersumme(num);
+                    String parity = "Die alternierende Quersumme Ihrer Matrikelnummer ist: " + qs.quersummeGetParity();
+                    antwort.setText(parity);
+                } else {
+                    TextView antwort = findViewById(R.id.Antwort);
+                    antwort.setText("Bitte Matrikelnummer eingeben.");
+                }
+            }
+        });
+
     }
 
      public class ClientTCPThread extends Thread {
