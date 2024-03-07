@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 PrintWriter output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
                 BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-
                 int num = Integer.parseInt(nummer);
                 output.println(num);
 
@@ -137,21 +136,19 @@ public class MainActivity extends AppCompatActivity {
 
         public void calculateQuersumme(){
             int counter = 0;
-            int number = 0;
 
             while(matrikelnummer > 0){
                 int lastDigit = matrikelnummer % 10;
                 if (counter == 0) {
-                    number = lastDigit;
+                    quersumme = lastDigit;
                 } else if (counter % 2 == 0){
-                    number += lastDigit;
+                    quersumme += lastDigit;
                 } else{
-                    number -= lastDigit;
+                    quersumme -= lastDigit;
                 }
                 matrikelnummer = matrikelnummer / 10;
                 counter++;
             }
-            this.quersumme = number;
         }
 
         public String quersummeGetParity(){
@@ -162,8 +159,6 @@ public class MainActivity extends AppCompatActivity {
                 return "ungerade";
             }
         }
-
-
 
     }
 }
