@@ -42,18 +42,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button abschicken = findViewById(R.id.buttonAbschicken);
-
         abschicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText matrikelnummer = findViewById(R.id.MatrikelnummerEingabe);
                 String matNr = matrikelnummer.getText().toString();
-                if (matNr.length() != 0){
+                if (matNr.length() == 8){
                     ClientTCPThread client = new ClientTCPThread(serverName, serverPort, matNr);
                     client.start();
                 } else {
                     TextView antwort = findViewById(R.id.Antwort);
-                    antwort.setText("Bitte Matrikelnummer eingeben.");
+                    antwort.setText("Bitte gültige Matrikelnummer eingeben.");
                 }
 
             }
@@ -65,15 +64,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText matrikelnummer = findViewById(R.id.MatrikelnummerEingabe);
                 String matNr = matrikelnummer.getText().toString();
-                if (matNr.length() != 0){
+                if (matNr.length() == 8){
                     TextView antwort = findViewById(R.id.Antwort);
                     int num = Integer.parseInt(matNr);
                     AlternierendeQuersumme qs = new AlternierendeQuersumme(num);
-                    String parity = "Die alternierende Quersumme Ihrer Matrikelnummer ist: " + qs.quersummeGetParity();
+                    String parity = "Die alternierende Quersumme Deiner Matrikelnummer ist: " + qs.quersummeGetParity();
                     antwort.setText(parity);
                 } else {
                     TextView antwort = findViewById(R.id.Antwort);
-                    antwort.setText("Bitte Matrikelnummer eingeben.");
+                    antwort.setText("Bitte gültige Matrikelnummer eingeben.");
                 }
             }
         });
