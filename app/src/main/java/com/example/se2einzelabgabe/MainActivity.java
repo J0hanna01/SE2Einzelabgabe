@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 if (matNr.length() == 8){
                     int num = Integer.parseInt(matNr);
                     AlternierendeQuersumme qs = new AlternierendeQuersumme(num);
-                    String parity = "Die alternierende Quersumme Deiner Matrikelnummer ist: " + qs.quersummeGetParity();
+                    String parity = "Die alternierende Quersumme Deiner Matrikelnummer ist: " + qs.crossSumGetParity();
                     response.setText(parity);
                 } else {
                     response.setText("Bitte gültige Matrikelnummer eingeben.");
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             this.crossSum = 0;
         }
 
-        public void calculateQuersumme(){
+        public void calculateCrossSum(){
             int counter = 0;
 
             while(studentNumber > 0){
@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        public String quersummeGetParity(){
-            calculateQuersumme();
+        public String crossSumGetParity(){
+            calculateCrossSum();
             if (crossSum % 2 == 0){
                 return "gerade";
             } else{
