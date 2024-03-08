@@ -58,14 +58,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText studentNumber = findViewById(R.id.MatrikelnummerEingabe);
                 String matNr = studentNumber.getText().toString();
+                TextView response = findViewById(R.id.Antwort);
                 if (matNr.length() == 8){
-                    TextView response = findViewById(R.id.Antwort);
                     int num = Integer.parseInt(matNr);
                     AlternierendeQuersumme qs = new AlternierendeQuersumme(num);
                     String parity = "Die alternierende Quersumme Deiner Matrikelnummer ist: " + qs.quersummeGetParity();
                     response.setText(parity);
                 } else {
-                    TextView response = findViewById(R.id.Antwort);
                     response.setText("Bitte gültige Matrikelnummer eingeben.");
                 }
             }
