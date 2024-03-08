@@ -35,38 +35,38 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         
-        Button abschicken = findViewById(R.id.buttonAbschicken);
-        abschicken.setOnClickListener(new View.OnClickListener() {
+        Button send = findViewById(R.id.buttonAbschicken);
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText matrikelnummer = findViewById(R.id.MatrikelnummerEingabe);
-                String matNr = matrikelnummer.getText().toString();
+                EditText studentNumber = findViewById(R.id.MatrikelnummerEingabe);
+                String matNr = studentNumber.getText().toString();
                 if (matNr.length() == 8){
                     ClientTCPThread client = new ClientTCPThread(matNr);
                     client.start();
                 } else {
-                    TextView antwort = findViewById(R.id.Antwort);
-                    antwort.setText("Bitte gültige Matrikelnummer eingeben.");
+                    TextView response = findViewById(R.id.Antwort);
+                    response.setText("Bitte gültige Matrikelnummer eingeben.");
                 }
 
             }
         });
 
-        Button berechnen = findViewById(R.id.buttonBerechnen);
-        berechnen.setOnClickListener(new View.OnClickListener() {
+        Button calculate = findViewById(R.id.buttonBerechnen);
+        calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText matrikelnummer = findViewById(R.id.MatrikelnummerEingabe);
-                String matNr = matrikelnummer.getText().toString();
+                EditText studentNumber = findViewById(R.id.MatrikelnummerEingabe);
+                String matNr = studentNumber.getText().toString();
                 if (matNr.length() == 8){
-                    TextView antwort = findViewById(R.id.Antwort);
+                    TextView response = findViewById(R.id.Antwort);
                     int num = Integer.parseInt(matNr);
                     AlternierendeQuersumme qs = new AlternierendeQuersumme(num);
                     String parity = "Die alternierende Quersumme Deiner Matrikelnummer ist: " + qs.quersummeGetParity();
-                    antwort.setText(parity);
+                    response.setText(parity);
                 } else {
-                    TextView antwort = findViewById(R.id.Antwort);
-                    antwort.setText("Bitte gültige Matrikelnummer eingeben.");
+                    TextView response = findViewById(R.id.Antwort);
+                    response.setText("Bitte gültige Matrikelnummer eingeben.");
                 }
             }
         });
@@ -74,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
      public class ClientTCPThread extends Thread {
-        String nummer;
-        TextView antwort = findViewById(R.id.Antwort);
+        String studentNumber;
+        TextView response = findViewById(R.id.Antwort);
 
         public ClientTCPThread(String matNr){
-            this.nummer = matNr;
+            this.studentNumber = matNr;
         }
 
 
@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 PrintWriter output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
                 BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                int num = Integer.parseInt(nummer);
-                output.println(num);
+                int numOut = Integer.parseInt(studentNumber);
+                output.println(numOut);
 
                 String message = input.readLine();
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        antwort.setText(message);
+                        response.setText(message);
                     }
                 });
 
@@ -116,34 +116,34 @@ public class MainActivity extends AppCompatActivity {
      }
 
     public class AlternierendeQuersumme {
-        private int matrikelnummer;
-        private int quersumme;
+        private int studentNumber;
+        private int crossSum;
 
-        public AlternierendeQuersumme(int matrikelnummer){
-            this.matrikelnummer = matrikelnummer;
-            this.quersumme = 0;
+        public AlternierendeQuersumme(int studentNumber){
+            this.studentNumber = studentNumber;
+            this.crossSum = 0;
         }
 
         public void calculateQuersumme(){
             int counter = 0;
 
-            while(matrikelnummer > 0){
-                int lastDigit = matrikelnummer % 10;
+            while(studentNumber > 0){
+                int lastDigit = studentNumber % 10;
                 if (counter == 0) {
-                    quersumme = lastDigit;
+                    crossSum = lastDigit;
                 } else if (counter % 2 == 0){
-                    quersumme += lastDigit;
+                    crossSum += lastDigit;
                 } else{
-                    quersumme -= lastDigit;
+                    crossSum -= lastDigit;
                 }
-                matrikelnummer = matrikelnummer / 10;
+                studentNumber = studentNumber / 10;
                 counter++;
             }
         }
 
         public String quersummeGetParity(){
             calculateQuersumme();
-            if (quersumme % 2 == 0){
+            if (crossSum % 2 == 0){
                 return "gerade";
             } else{
                 return "ungerade";
