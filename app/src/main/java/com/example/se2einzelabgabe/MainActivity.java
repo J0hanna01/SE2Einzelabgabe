@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        
         Button abschicken = findViewById(R.id.buttonAbschicken);
         abschicken.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText matrikelnummer = findViewById(R.id.MatrikelnummerEingabe);
                 String matNr = matrikelnummer.getText().toString();
                 if (matNr.length() == 8){
-                    ClientTCPThread client = new ClientTCPThread(serverName, serverPort, matNr);
+                    ClientTCPThread client = new ClientTCPThread(matNr);
                     client.start();
                 } else {
                     TextView antwort = findViewById(R.id.Antwort);
@@ -74,14 +74,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
      public class ClientTCPThread extends Thread {
-        int port;
-        String name;
         String nummer;
         TextView antwort = findViewById(R.id.Antwort);
 
-        public ClientTCPThread(String name, int port, String matNr){
-            this.name = name;
-            this.port = port;
+        public ClientTCPThread(String matNr){
             this.nummer = matNr;
         }
 
